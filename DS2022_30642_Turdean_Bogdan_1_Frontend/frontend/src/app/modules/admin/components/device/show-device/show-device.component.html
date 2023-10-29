@@ -1,0 +1,61 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right m-2" 
+data-toggle="modal" data-target="#exampleModal"
+(click)="addClick()"
+data-backdrop="static" data-keyboard="false">Add Device
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="close" 
+          data-dismiss="modal" aria-label="Close"
+          (click)="closeClick()" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-add-edit-device [device]="device" *ngIf="ActivateAddEditDeviceComp">
+            </app-add-edit-device>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Address</th>
+            <th>Maximum consumption/hour</th>
+            <th>User Id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of DeviceList">
+            <td>{{dataItem.id}}</td>
+            <td>{{dataItem.description}}</td>
+            <td>{{dataItem.address}}</td>
+            <td>{{dataItem.max_cons_per_hour}}</td>
+            <td>{{dataItem.user}}</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1"
+                data-toggle="modal" data-target="#exampleModal"
+                (click)="editClick(dataItem)" data-backdrop="static" data-keyboard="false">
+                    Update
+                </button>
+                <button type="button" class="btn btn-light mr-1"
+                (click)="deleteClick(dataItem)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
